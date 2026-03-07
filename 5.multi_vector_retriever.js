@@ -107,10 +107,10 @@ console.log(
 );
 
 // ── Test 2: MultiVector retriever (returns original large chunks) ─────────────
-const retrieverResult = await retriever.invoke("chapter on philosophy");
-console.log(
-  `\nMulti-vector retrieved chunk length: ${retrieverResult[0].pageContent.length}`,
-);
+// const retrieverResult = await retriever.invoke("chapter on philosophy");
+// console.log(
+//   `\nMulti-vector retrieved chunk length: ${retrieverResult[0].pageContent.length}`,
+// );
 
 // ── Test 3: QA Chain using simple vector store retriever ──────────────────────
 const qaRetriever = vectorStore.asRetriever();
@@ -137,5 +137,8 @@ const qa = RunnableLambda.from(async (input) => {
   return answer;
 });
 
-const response = await qa.invoke("when does messi won the world cup?");
+const response =
+  await qa.invoke(`Today I woke up and brushed my teeth, then I sat down to read
+the news. But then I forgot the food on the cooker. Who are some key figures
+in the ancient greek history of philosophy?`);
 console.log(`\nAnswer: ${response.content}`);
